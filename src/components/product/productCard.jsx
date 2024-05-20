@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 // components/ProductCard.jsx
 
-import React from "react";
+import React, { useContext, useState, useReducer } from "react";
 import {
   Card,
   CardContent,
@@ -12,9 +12,16 @@ import {
   CardActionArea,
 } from "@mui/material";
 
+//* Importamos el contexto y la función CartProvider que usa 
+//* la función reducer y contiene el addProduct1
+import { BasketContext, CartProvider} from "../Conext/BasketContext";
+
 // Componente para renderizar la tarjeta del producto
 const ProductCard = ({ product }) => {
+  const {addProduct1} = useContext(BasketContext)
+
   return (
+ 
     <Card
       sx={{
         maxWidth: 345,
@@ -53,9 +60,12 @@ const ProductCard = ({ product }) => {
         </CardContent>
       </CardActionArea>
       <CardActions disableSpacing sx={{ justifyContent: "flex-end" }}>
+        {/* //! aquí llamamos a la funcioón normal, sea reducer o no */}
+         <Button onClick={()=>addProduct1(product)}>Añadir al carrito</Button>        
         {/* Botón para añadir al carrito */}
       </CardActions>
     </Card>
+
   );
 };
 

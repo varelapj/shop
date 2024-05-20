@@ -15,6 +15,7 @@ const productsWithImages = products.map((product) => {
 
 const ProductsList = () => {
   return (
+    
     <Container maxWidth="lg">
       {/* Contenedor de la lista de productos */}
       <Grid container spacing={2} justifyContent="flex-start">
