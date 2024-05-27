@@ -1,4 +1,5 @@
 import React, { createContext, useState, useReducer } from 'react';
+import { useContext } from 'react';
 
 //! Crear el contexto, esto siempre es así
 export const BasketContext = createContext();
@@ -22,7 +23,7 @@ const initialState = {
 //! Genero la función reducer con un switch, siemrpe se escribe igual. 
 const reducer2 = (state, action) => {
     switch (action.type) {
-//! Peude ser 'add' a secas o como quieras
+//! Puede ser 'add' a secas o como quieras
       case 'add': {
         const existingProductIndex = state.basket.findIndex(
           item => item.id === action.product.id
@@ -58,6 +59,27 @@ const reducer2 = (state, action) => {
   };
   //! creo qel proveedor que ahora llevará la reducer dentro
 
+//   //* Genero una función que, a su vez, va a usar la función reducer2 de arriba
+//   //* a través de un usereducer
+//   export const CartProvider = ({ children }) => {
+//     //! y el useReducer en lugar del useState
+//     const [state, dispatch] = useReducer(reducer2, initialState);
+//   //! useReducer tiene una función dispatch que es la que lanza  el añadir un producto
+//   const addProduct1 = (newProduct) => {
+//     dispatch({ type: 'add', product: newProduct });
+// };  
+
+// //! En el return le ponemos el NOMBREDELCONTEXTO.provider y elestado inicial 
+// //! y la función que cambie el estado
+//   return (
+//     // <BasketContext.Provider value={{ basket, addProduct,reducer }}>
+// //! basket ahora para ser consumida, debe accederse a través de state.basket
+// //* pasamos la última de las funciones, addProduct
+//     <BasketContext.Provider value={{ basket: state.basket,TOTAL: state.TOTAL, addProduct1 }}>
+//       {children}
+//     </BasketContext.Provider>
+//   );
+// };
   //* Genero una función que, a su vez, va a usar la función reducer2 de arriba
   //* a través de un usereducer
   export const CartProvider = ({ children }) => {
@@ -79,3 +101,5 @@ const reducer2 = (state, action) => {
     </BasketContext.Provider>
   );
 };
+
+export const useCart = () => useContext(BasketContext)

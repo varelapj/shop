@@ -14,11 +14,11 @@ import {
 
 //* Importamos el contexto y la función CartProvider que usa 
 //* la función reducer y contiene el addProduct1
-import { BasketContext, CartProvider} from "../Conext/BasketContext";
+import { BasketContext, CartProvider, useCart} from "../Conext/BasketContext";
 
 // Componente para renderizar la tarjeta del producto
 const ProductCard = ({ product }) => {
-  const {addProduct1} = useContext(BasketContext)
+  const {addProduct1} = useCart()//useContext(BasketContext)
 
   return (
  

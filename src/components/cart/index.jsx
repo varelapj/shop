@@ -1,13 +1,13 @@
 import { List, ListItem, ListItemText, Typography, Box } from "@mui/material";
 import { useContext } from "react";
-import { BasketContext } from "../Conext/BasketContext";
+import { BasketContext,useCart } from "../Conext/BasketContext";
 
 // Componente funcional Cart
 // eslint-disable-next-line react/prop-types
 const Cart = () => {
 //! Importamos el contexto para su USO. Incluye el estado incial {BASKET}
 //! igualado a un useContext(NOMBREDELCONTEXTO)
-const {basket, TOTAL} = useContext(BasketContext)
+const {basket, TOTAL} = useCart()//useContext(BasketContext)
   // Función para manejar la eliminación de un ítem del carrito
   return (
     
